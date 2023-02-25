@@ -47,7 +47,7 @@ def callback(channel, method, properties, body):
         pass
     
 # define a main function to run the program
-def main(hn: str = "localhost", qn: str = "smoker-queue"):
+def main(hn: str = "host", qn: str = "smoker-queue"):
     """ Continuously listen for task messages on a named queue."""
 
     # when a statement can go wrong, use a try-except block
@@ -116,4 +116,4 @@ def main(hn: str = "localhost", qn: str = "smoker-queue"):
 # If this is the program being run, then execute the code below
 if __name__ == "__main__":
     # call the main function with the information needed
-    main("localhost", "smoker-queue")
+    main('host', 'smoker-queue')
