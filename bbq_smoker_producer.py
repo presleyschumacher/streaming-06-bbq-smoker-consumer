@@ -88,7 +88,7 @@ def csv_file(data_file):
 
 if __name__ == "__main__":
     # ask the user if they would like to open the RabbitMQ Admmin
-    offer_rabbitmq_admin_site('True')
+    offer_rabbitmq_admin_site('False')
 
     # delete the queue before starting
     delete_queue(host, smoker_queue)
