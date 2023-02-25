@@ -21,7 +21,7 @@ data_file = "smoker-temps.csv"
 
 def offer_rabbitmq_admin_site(show_offer):
     """Offer to open the RabbitMQ Admin website by using True or False"""
-    if show_offer == True:
+    if show_offer == 'True':
         ans = input("Would you like to monitor RabbitMQ queues? y or n ")
         print()
         if ans.lower() == "y":
@@ -93,7 +93,7 @@ def csv_file(data_file):
         try:
             food_a_channel2 = float(row[2])
             food_a_data = {fstring_time_column, food_a_channel2}
-            food_a_message = str(food_a_date).encode()
+            food_a_message = str(food_a_data).encode()
             send_message(host, food_a_queue, food_a_message)
         except ValueError:
             pass    
@@ -101,7 +101,7 @@ def csv_file(data_file):
         try:
             food_b_channel3 = float(row[3])
             food_b_data = {fstring_time_column, food_b_channel3}
-            food_b_message = str(food_b_date).encode()
+            food_b_message = str(food_b_data).encode()
             send_message(host, food_b_queue, food_b_message)
         except ValueError:
             pass
@@ -112,12 +112,17 @@ def csv_file(data_file):
 # If this is the program being run, then execute the code below
 if __name__ == "__main__":
     # ask the user if they would like to open the RabbitMQ Admmin
-    offer_rabbitmq_admin_site('true')
+    offer_rabbitmq_admin_site('True')
 
-    # Send Messages
-    send_message('localhost',"smoker_queue", "smoker_message")
-    send_message('localhost',"food_a_queue", "food_a_message") 
-    send_message('localhost',"food_b_queue", "food_b_message")
+    # delete the queue before starting
+    delete_queue(host, smoker_queue)
+    delete_queue(host, food_a_queue)
+    delete_queue(host, food_b_queue)
 
-    # Sleep for 30 seconds
-    time.sleep(30)
+    # Continuously read data from the CSV file and send messages to the queue
+    while True:
+        csv_file(data_file)
+
+    # We want to sleep for 30 seconds, but in order to save time while testing, I set for 2 seconds
+
+    time.sleep(2)

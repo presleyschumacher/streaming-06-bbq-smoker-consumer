@@ -1,6 +1,6 @@
 """"
     This program sends a message to a queue on the RabbitMQ server from a CSV File to create alert notifications.
-    This program is specifically for the smoker temperatures
+    This program is specifically for Food A temperatures
     Author: Presley Schumacher
 
 """
@@ -12,7 +12,7 @@ import time
 
 # Define the variables
 host = "localhost"
-smoker_queue = "01-smoker"
+food_a_queue = "02-food-A"
 data_file = "smoker-temps.csv"
 
 def offer_rabbitmq_admin_site(show_offer):
@@ -79,12 +79,12 @@ def csv_file(data_file):
         # If it cannot be converted into a float, it will move onto the next row
         # Send the message to the message queue
         try:
-            smoker_channel1 = float(row[1])
-            smoker_data = (fstring_time_column, smoker_channel1)
-            smoker_message = str(smoker_data).encode()
-            send_message(host, smoker_queue, smoker_message)
+            food_a_channel2 = float(row[2])
+            food_a_data = {fstring_time_column, food_a_channel2}
+            food_a_message = str(food_a_date).encode()
+            send_message(host, food_a_queue, food_a_message)
         except ValueError:
-            pass
+            pass 
 
 if __name__ == "__main__":
     # ask the user if they would like to open the RabbitMQ Admmin
