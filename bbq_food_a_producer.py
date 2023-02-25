@@ -81,17 +81,17 @@ def csv_file(data_file):
         try:
             food_a_channel2 = float(row[2])
             food_a_data = {fstring_time_column, food_a_channel2}
-            food_a_message = str(food_a_date).encode()
+            food_a_message = str(food_a_data).encode()
             send_message(host, food_a_queue, food_a_message)
         except ValueError:
-            pass 
+            pass
 
 if __name__ == "__main__":
     # ask the user if they would like to open the RabbitMQ Admmin
     offer_rabbitmq_admin_site('True')
 
     # delete the queue before starting
-    delete_queue(host, smoker_queue)
+    delete_queue(host, food_a_queue)
 
     # read data from the CSV file and send messages to the queue
     csv_file(data_file)
