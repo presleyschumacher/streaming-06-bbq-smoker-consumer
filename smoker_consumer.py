@@ -42,7 +42,7 @@ def callback(channel, method, properties, body):
             print("SMOKER ALERT! Smoker temp decreased 15 F or more in 2.5 min")
         # acknowledge the message was received and processed 
         # (now it can be deleted from the queue)
-        ch.basic_ack(delivery_tag=method.delivery_tag)
+        channel.basic_ack(delivery_tag=method.delivery_tag)
     except ValueError:
         pass
     
