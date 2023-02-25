@@ -9,6 +9,7 @@ import pika
 import sys
 import time
 from collections import deque
+
 #####################################################################################
 
 # define variables that will be used throughout
