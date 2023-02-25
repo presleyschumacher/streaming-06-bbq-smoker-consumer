@@ -97,4 +97,4 @@ if __name__ == "__main__":
     csv_file(data_file)
 
     # Sleep for 30 seconds
-    time.sleep(30)
+    time.sleep(2)
