@@ -14,14 +14,17 @@ from collections import deque
 
 # define variables that will be used throughout
 host = "localhost"
-food_a_queue = '02-food-A'
+smoker_queue = "01-smoker"
+food_a_queue = "02-food-A"
+food_b_queue = "02-food-B"
+data_file = "smoker-temps.csv"
 
 
 #######################################################################################
-# defining foodA temp deque
+# Define a deque with a maximum length of 20
+message_deque = deque(maxlen=20)
 
 
-food_a_deque = deque(maxlen=20) # limited to 20 items (the 20 most recent readings)
 
 # We want know if the follow even occurs
 #The food temperature changes less than 1 degree F in 10 minutes (food stall)
