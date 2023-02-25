@@ -1,5 +1,7 @@
 """
     This program sends a message to a queue on the RabbitMQ server from a CSV File to create alert notifications.
+    We are simulating a streaming series of temperature readings from the smoker and 2 different foods
+    In the producer, below, we are sending these temperature readings to RabbitMQ
 
     Author: Presley Schumacher
     Date: February 14, 2023
