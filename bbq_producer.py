@@ -84,24 +84,24 @@ def csv_file(data_file):
         # Send the message to the message queue
         try:
             smoker_channel1 = float(row[1])
-            fstring_smoker_message = f"[{fstring_time_column}, {smoker_channel1}]"
-            smoker_message = fstring_smoker_message.encode()
+            smoker_data = (fstring_time_column, smoker_channel1)
+            smoker_message = str(smoker_data).encode()
             send_message(host, smoker_queue, smoker_message)
         except ValueError:
             pass
 
         try:
             food_a_channel2 = float(row[2])
-            fstring_food_a_message = f"[{fstring_time_column}, {food_a_channel2}]"
-            food_a_message = fstring_food_a_message.encode()
+            food_a_data = {fstring_time_column, food_a_channel2}
+            food_a_message = str(food_a_date).encode()
             send_message(host, food_a_queue, food_a_message)
         except ValueError:
             pass    
 
         try:
             food_b_channel3 = float(row[3])
-            fstring_food_b_message = f"[{fstring_time_column}, {food_b_channel3}]"
-            food_b_message = fstring_food_b_message.encode()
+            food_b_data = {fstring_time_column, food_b_channel3}
+            food_b_message = str(food_b_date).encode()
             send_message(host, food_b_queue, food_b_message)
         except ValueError:
             pass
@@ -116,7 +116,7 @@ if __name__ == "__main__":
 
     # Send Messages
     send_message('localhost',"smoker_queue", "smoker_message")
-    send_message('localhost',"food_a_queue", "food_a_temp_message") 
+    send_message('localhost',"food_a_queue", "food_a_message") 
     send_message('localhost',"food_b_queue", "food_b_message")
 
     # Sleep for 30 seconds
