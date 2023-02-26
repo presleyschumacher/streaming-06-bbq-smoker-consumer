@@ -34,11 +34,11 @@ def send_message(host: str, queue_name: str, message: str):
     """
 
 # Define the variables
-host = "localhost"
-smoker_queue = "01-smoker"
-food_a_queue = "02-food-A"
-food_b_queue = "02-food-B"
-data_file = "smoker-temps.csv"
+host = 'localhost'
+smoker_queue = '01-smoker'
+food_a_queue = '02-food-A'
+food_b_queue = '02-food-B'
+data_file = 'smoker-temps.csv'
 
 # Define reading in the CSV file
 with open(data_file, 'r') as file:
@@ -120,9 +120,9 @@ if __name__ == "__main__":
 # ask the user if they would like to open the RabbitMQ Admmin
     offer_rabbitmq_admin_site('True')
 
-    send_message('host', 'smoker_queue', 'smoker_message')
-    send_message('host', 'food_a_queue', 'food_a_temp_message') 
-    send_message('host', 'food_b_queue', 'food_b_message')
+    send_message('localhost', 'smoker_queue', 'smoker_message')
+    send_message('localhost', 'food_a_queue', 'food_a_temp_message') 
+    send_message('localhost', 'food_b_queue', 'food_b_message')
 
     # sleep should be for 30 seconds as the assignment calls
     # we will use 2 seconds for testing and will correct to 30 once we know it is able to run
