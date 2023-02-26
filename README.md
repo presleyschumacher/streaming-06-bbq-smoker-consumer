@@ -11,6 +11,7 @@
   
 * In week 5, the system will be designed and the producer will be implemented
 * In week 6, the consumers will be added and an alert will be raised when interesting events are detected.
+*  For this scenerio, I am pretending that we are cooking pulled pork (food A) and ribs (food B). I thought it made more sense (and made it more realistic) if the alerts named the actual foods being cooked in the smoker. Plus it's more fun.
 
 ## Before You Begin
 - [x] Fork this starter repo into your GitHub.
@@ -58,11 +59,44 @@
 1. Set error messages
 1. Create a communication channel
 1. Set-up the channel to listen to a specific queue and use the callback function to acknowledge the message
-1. 
+1. Print a message to the console
+1. Start consuming the messages via the communication channel
+1. Set error messages
+1. Call the main function using the host and queue name
+
+## Deque in Python
+* Deque is a part of the collections module in Python that stands for "double-ended queue"
+* It is preferred over a list in cases when you would need quick append and pop operations from both ends of the container
+* For the Smoker Consumer:
+   * The smoker_deque is declared as a deque with a max. length of 5
+   * This deque is being used to store temperature readings from the smoker sensor
+   * The deque will automatically remove the oldest temperature readings when a new reading is added once it reaches the max length of 5
+   * Only 5 readings will be stored in the deque at one time
+   * The deque is then used to check the difference between the max. and min. temperature readings in teh deque is greater than or equal to 15 degrees. If the condition is met, a message is printed to notify the user that the smoker temp has decreased.
+* For Food A and B Consumers:
+   * foodA_deque and foodB_deque are declared with a max. length of 20 elements
+   * The deque is used to store the 20 most recent readings from the food sensors which records a reading every 30 seconds.
+      * The deque is being updated every 30 seconds, each minute contains 2 readings, so 10 minutes would contain 20 readings
+   * The deque follows the same process mentioned above: the deque is used to check whether the difference between the max. and min. values in the deque is less than 1. If the condition is met, a message is printed to notify the user that there had been changes to either Food A or Food B
 
 
 
 ## Sources
 https://www.rabbitmq.com
 
+https://www.geeksforgeeks.org/deque-in-python/
+
 ## Screenshot
+
+### BBQ Producer
+![image](https://user-images.githubusercontent.com/105391626/221429866-fa2b8de4-d9ef-43f6-98e6-ad24d810f8c8.png)
+
+### BBQ Consumer for Smoker
+![image](https://user-images.githubusercontent.com/105391626/221429897-c98d7ee8-d048-4001-813f-46ce870f2c1a.png)
+
+### BBQ Consumer for Food A (pulled pork)
+![image](https://user-images.githubusercontent.com/105391626/221429923-537ea089-e7d8-4cc3-8eb7-84457efc1a6b.png)
+
+### BBQ Consumer for Food B (ribs)
+![image](https://user-images.githubusercontent.com/105391626/221430142-15ec4232-d7f9-4447-b7df-e32298009fa4.png)
+
