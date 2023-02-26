@@ -34,7 +34,7 @@ def callback(ch, method, properties, body):
         # between the max and min values in the deque is greater than or equal to 15.
         # If the condition is met, the code prints a message indicating that the smoker temp has decreased by 15 degrees or more
         if len(foodA_deque)==20 and max(foodA_deque)-min(foodA_deque)<1:
-            print("FOOD STALL ALERT! Food temp has changed by 1 degree or less in 10 min")
+            print("FOOD STALL ALERT! Food A (Pulled Pork) temp has changed by 1 degree or less in 10 min")
 
     # Acknowledge that the message has been processed and can be removed from the queue    
     except ValueError:

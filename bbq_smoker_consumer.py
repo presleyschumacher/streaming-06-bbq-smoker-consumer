@@ -34,7 +34,7 @@ def callback(ch, method, properties, body):
         # between the max and min values in the deque is greater than or equal to 15.
         # If the condition is met, the code prints a message indicating that the smoker temp has decreased by 15 degrees or more
         if smoker_deque and max(smoker_deque)-min(smoker_deque)>=15:
-            print("smoker has decreased by 15 degrees or more!")
+            print("SMOKER ALERT! Smoker has decreased by 15 degrees or more!")
 
     # Acknowledge that the message has been processed and can be removed from the queue    
     except ValueError:
