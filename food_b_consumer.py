@@ -104,5 +104,5 @@ def main(hn: str = "localhost", qn: str = "task_queue"):
 # If this is the program being run, then execute the code below
 if __name__ == "__main__":
     # call the main function with the information needed
-    main('localhost', 'food_b_queue')
+    main('localhost', '02-food-B')
 
