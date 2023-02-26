@@ -1,4 +1,5 @@
-## Week 5: Smart Smoker Consumers
+# Week 6: Part 2: Creating a Consumer for the Smart Smoker System
+#### Presley Schumacher - February 21, 2023
 
 > Use RabbitMQ to create 3 consumers that will be used to monitor data from the sensors of a running barbeque smoker. Read one value every 30 seconds
 
@@ -43,9 +44,21 @@
          1. Create a producer to send these temperature readings to RabbitMQ.
          1. Create three consumer processes, each one monitoring one of the temperature streams. 
          1. Perform calculations to determine if a significant event has occurred.
-  
 
 ## Execution
+1. Import the necessary modules
+1. Define your variables
+1. Declare the deques for each consumer
+    1. 5 for the smoker and 20 both food A and B
+1. Define the callback function
+1. Retrieve the second element assigned to the temp variable
+1. Set max and min values and construct a message that will be printed based on certain perimeters
+1. Acknowledge the message has been proessed
+1. Define the main function
+1. Set error messages
+1. Create a communication channel
+1. Set-up the channel to listen to a specific queue and use the callback function to acknowledge the message
+1. 
 
 
 
