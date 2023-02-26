@@ -1,6 +1,6 @@
 """
     This program sends a message to a queue on the RabbitMQ server from a CSV File to create alert notifications.
-    We are simulating a streaming series of temperature readings from the smoker and 2 different foods
+    We are simulating a streaming series of temperature readings from the smoker and 2 different food temperatures
     In the producer, below, we are sending these temperature readings to RabbitMQ
 
     Author: Presley Schumacher
@@ -120,9 +120,9 @@ if __name__ == "__main__":
 # ask the user if they would like to open the RabbitMQ Admmin
     offer_rabbitmq_admin_site('True')
 
-    send_message("localhost","smoker_queue", "smoker_message")
-    send_message("localhost","food_a_queue", "food_a_temp_message") 
-    send_message("localhost","food_b_queue", "food_b_message")
+    send_message('host', 'smoker_queue', 'smoker_message')
+    send_message('host', 'food_a_queue', 'food_a_temp_message') 
+    send_message('host', 'food_b_queue', 'food_b_message')
 
     # sleep should be for 30 seconds as the assignment calls
     # we will use 2 seconds for testing and will correct to 30 once we know it is able to run
