@@ -3,7 +3,7 @@
     
     The bbq_producer.py must run to start sending the messge first
     We want know if (Condition To monitor):
-        The smoker temperature decreases by more than 15 degrees F in 2.5 minutes (smoker alert!)
+        Food Temperature changes less than 1 degree in 10 minutes
         
 ### Name:  Presley Schumacher
 ### Date:  February 21, 2023
@@ -15,9 +15,9 @@ from collections import deque
 
 #Declare Deque
 # 1 reading every 30 seconds
-# 2.5 min * 1 / 0.5 = Max length of 5
-# The 5 most recent readings
-smoker_deque = deque(maxlen=5) 
+# 10 min * 1 / 0.5 min
+# The 20 most recent readings
+foodB_deque = deque(maxlen=20)
 
 # define a callback function to be called when a message is received
 def callback(ch, method, properties, body):
@@ -33,8 +33,8 @@ def callback(ch, method, properties, body):
         # If there are elements in smoker_deque the code checks if the difference
         # between the max and min values in the deque is greater than or equal to 15.
         # If the condition is met, the code prints a message indicating that the smoker temp has decreased by 15 degrees or more
-        if smoker_deque and max(smoker_deque)-min(smoker_deque)>=15:
-            print("smoker has decreased by 15 degrees or more!")
+        if len(foodB_deque)==20 and max(foodB_deque)-min(foodB_deque)<1:
+            print("FOOD STALL ALERT! Food temp has changed by 1 degree or less in 10 min")
 
     # Acknowledge that the message has been processed and can be removed from the queue    
     except ValueError:
@@ -104,7 +104,5 @@ def main(hn: str = "localhost", qn: str = "task_queue"):
 # If this is the program being run, then execute the code below
 if __name__ == "__main__":
     # call the main function with the information needed
-    main('localhost', 'smoker_queue')
-
-
+    main('localhost', 'food_b_queue')
 
