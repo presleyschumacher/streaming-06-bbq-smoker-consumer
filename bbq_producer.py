@@ -118,5 +118,4 @@ if __name__ == "__main__":
     # Send Message
     send_message()
     # sleep should be for 30 seconds as the assignment calls
-    # we will use 2 seconds for testing and will correct to 30 once we know it is able to run
-    time.sleep(2)
+    time.sleep(30)
