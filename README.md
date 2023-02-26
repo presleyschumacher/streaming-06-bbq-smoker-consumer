@@ -100,3 +100,7 @@ https://www.geeksforgeeks.org/deque-in-python/
 ### BBQ Consumer for Food B (ribs)
 ![image](https://user-images.githubusercontent.com/105391626/221430142-15ec4232-d7f9-4447-b7df-e32298009fa4.png)
 
+### RabbitMQ Admin Site
+![image](https://user-images.githubusercontent.com/105391626/221431688-99cfba5d-1c7f-4718-97bf-839ae9b62478.png)
+
+
