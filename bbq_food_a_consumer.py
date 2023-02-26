@@ -29,7 +29,7 @@ def callback(ch, method, properties, body):
     # Retrieve the second element (index 1) assigned to the 'temp' variable
     try:
         temp=reading_string.split(",")[1]
-        smoker_deque.append(float(temp))
+        foodA_deque.append(float(temp))
         # If there are elements in smoker_deque the code checks if the difference
         # between the max and min values in the deque is greater than or equal to 15.
         # If the condition is met, the code prints a message indicating that the smoker temp has decreased by 15 degrees or more
