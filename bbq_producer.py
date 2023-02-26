@@ -47,29 +47,29 @@ with open(data_file, 'r') as file:
 
     header = next(reader)
 
-try:
-     # create a blocking connection to the RabbitMQ server
-    conn = pika.BlockingConnection(pika.ConnectionParameters(host))
-    # use the connection to create a communication channel
-    ch = conn.channel()
-    # delete the queue on starup to clear them before initiating them again
-    ch.queue_delete(smoker_queue)
-    ch.queue_delete(food_a_queue)
-    ch.queue_delete(food_b_queue)
+    try:
+        # create a blocking connection to the RabbitMQ server
+        conn = pika.BlockingConnection(pika.ConnectionParameters(host))
+        # use the connection to create a communication channel
+        ch = conn.channel()
+        # delete the queue on starup to clear them before initiating them again
+        ch.queue_delete(smoker_queue)
+        ch.queue_delete(food_a_queue)
+        ch.queue_delete(food_b_queue)
 
-    # use the channel to declare a durable queue
-    # a durable queue will survive a  server restart
-    # and help ensure messages are processed in order
-    # messages will not be deleted until the consumer acknowledges
-    ch.queue_declare(queue=smoker_queue, durable=True)
-    ch.queue_declare(queue=food_a_queue, durable=True)
-    ch.queue_declare(queue=food_b_queue, durable=True)
+        # use the channel to declare a durable queue
+        # a durable queue will survive a  server restart
+        # and help ensure messages are processed in order
+        # messages will not be deleted until the consumer acknowledges
+        ch.queue_declare(queue=smoker_queue, durable=True)
+        ch.queue_declare(queue=food_a_queue, durable=True)
+        ch.queue_declare(queue=food_b_queue, durable=True)
     
-    # set the variables for reach column in the row
-    for row in reader:
-        Time,Channel1,Channel2,Channel3 = row
+        # set the variables for reach column in the row
+        for row in reader:
+            Time,Channel1,Channel2,Channel3 = row
 
- # For Smoker, Food_A, and Food_B, the below steps will be followed:
+            # For Smoker, Food_A, and Food_B, the below steps will be followed:
             # use the round() function to round 2 decimal places
             # use the float() function to convert the string to a float
             # use an fstring to create a message from our data
@@ -103,13 +103,13 @@ try:
         except ValueError:
             pass
         
-except pika.exceptions.AMQPConnectionError as e:
-    print(f"Error: Connection to RabbitMQ server failed: {e}")
-    sys.exit(1)
+    except pika.exceptions.AMQPConnectionError as e:
+        print(f"Error: Connection to RabbitMQ server failed: {e}")
+        sys.exit(1)
     
-finally:
-    # close the connection to the server
-    conn.close()
+    finally:
+        # close the connection to the server
+        conn.close()
 
 # Standard Python idiom to indicate main program entry point
 # This allows us to import this module and use its functions
